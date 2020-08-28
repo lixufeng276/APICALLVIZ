@@ -3,14 +3,41 @@
 <head>
     <title>Data Visualization</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="scripts/mainScript.js" async></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles/mainStyle.css">
+    
 </head>
 <body>
+    <div class="contrainer">
+        <div class="row justify-content-center">
+            <p>HELLO WORLD this is my chart using chart.js as a CDN</p>
+        </div>
 
-    <p>HELLO WORLD this is my chart using chart.js as a CDN</p>
-    <div class = "myChartDiv">
-        <canvas id="apiCallsChart" width="600" height="400">Your browser does not support the HTML5 canvas tag.</canvas>
-        <script src="scripts/mainScript.js"></script>
+        <div class="row justify-content-center">
+            <p>Date/Time: <span id="datetime"></span></p>
+        </div>
+        
+        <div class="row justify-content-center">
+        
+            <div class = "myChartDiv">
+                <canvas id="apiCallsChart" width="600" height="400">Your browser does not support the HTML5 canvas tag.</canvas>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <button type="button" class="btn btn-primary" onclick="testFunction()">Click Me</button>
+            </div>
+            
+            <div class="col-2">
+                <button type="button" class="btn btn-secondary" onclick="resetFunction()">Reset The Graph!</button>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <span id="test">Testing Javascript this text will change</span>
+        </div>
     </div>
 </body>
 </html>
