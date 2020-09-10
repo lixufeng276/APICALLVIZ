@@ -2,3 +2,6 @@
     max-width: 600px;
     max-height: 400px;
 }
+.displayingText {
+    text-align: center;
+}

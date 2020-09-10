@@ -5,22 +5,7 @@ var n = d.toString();
 // d.setHours(24);
 currentDay = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2));
 
-//fixing time to standard time from military time
-// if (d.getHours() <= 12) {
-//     document.getElementById("datetime").innerHTML = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2)) + "/" + (d.getFullYear()) + " " + (("0" + (d.getHours())).slice(-2)) + ":" + (("0" + (d.getMinutes())).slice(-2)) + " AM";
-// } else {
-//     document.getElementById("datetime").innerHTML = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2)) + "/" + (d.getFullYear()) + " " + (("0" + (d.getHours() - 12)).slice(-2)) + ":" + (("0" + (d.getMinutes())).slice(-2)) + " PM";
-// }
-// if (d.getHours() == 0) {
-//     document.getElementById("datetime").innerHTML = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2)) + "/" + (d.getFullYear()) + " " + 12 + ":" + (("0" + (d.getMinutes())).slice(-2)) + " AM";
-// }
-
-//display live clock
-// while(true){
 setInterval(displayclock, 500);
-// }
-
-
 
 function displayclock() {
     var time = new Date();
@@ -73,7 +58,6 @@ var date = ["08/05", "08/06", "08/07", "08/08", "08/09", "08/10", currentDay];
 var day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 //for the y-axis
 
-var nullArr = [0, 0, 0, 0, 0, 0, 0]
 var prevArr = [0, 12, 14, 15, 3, 9, 0]
 var newArr = [5, 18, 2, 15, 9, 15, 0]
 
@@ -119,14 +103,12 @@ function updateLabel() {
     }
     
     apiCallsChart.data.labels = minCurr.reverse();
-    console.log(minCurr.reverse())
-    console.log(newArr)
-    console.log(prevArr)
     apiCallsChart.update();
 }
 
 function getCurSecond() {
     const d = new Date()
+    // console.log(d.getSeconds())
     if (d.getSeconds() == 0) {
         updateLabel();
         updateArray();
@@ -139,47 +121,22 @@ function testFunction() {
     
     apiCallsChart.data.datasets[0].data[6]++;
     document.getElementById("test").style.color = "red";
-    document.getElementById("test").innerHTML = "This text has been changed";
-    apiCallsChart.update();
-}
-
-function resetFunction() {
-    document.getElementById("test").style.color = "black";
-    document.getElementById("test").innerText = "Changing Text" + n;
-    apiCallsChart.data.datasets[0].data = nullArr;
+    document.getElementById("test").innerHTML = "Text has changed, ADDING ONE to the current dataset[6]";
     
     apiCallsChart.update();
 }
-
-function switchGraph() {
+function resetFunction() {
+    document.getElementById("test").style.color = "black";
+    
+    
     if (apiCallsChart.data.datasets[0].data == prevArr) {
         apiCallsChart.data.datasets[0].data = newArr;
         apiCallsChart.data.datasets[1].data = prevArr;
+        document.getElementById("dataset").innerText = "Current dataset is: newArr";
     } else {
         apiCallsChart.data.datasets[0].data = prevArr;
         apiCallsChart.data.datasets[1].data = newArr;
+        document.getElementById("dataset").innerText = "Current dataset is: prevArr";
     }
     apiCallsChart.update();
 }
-
-
-
-//function from documentation
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    })
-    chart.update();
-}
-function removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-    chart.update();
-}
-
-
-
-
