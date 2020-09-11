@@ -5,22 +5,8 @@ var n = d.toString();
 // d.setHours(24);
 currentDay = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2));
 
-//fixing time to standard time from military time
-// if (d.getHours() <= 12) {
-//     document.getElementById("datetime").innerHTML = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2)) + "/" + (d.getFullYear()) + " " + (("0" + (d.getHours())).slice(-2)) + ":" + (("0" + (d.getMinutes())).slice(-2)) + " AM";
-// } else {
-//     document.getElementById("datetime").innerHTML = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2)) + "/" + (d.getFullYear()) + " " + (("0" + (d.getHours() - 12)).slice(-2)) + ":" + (("0" + (d.getMinutes())).slice(-2)) + " PM";
-// }
-// if (d.getHours() == 0) {
-//     document.getElementById("datetime").innerHTML = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2)) + "/" + (d.getFullYear()) + " " + 12 + ":" + (("0" + (d.getMinutes())).slice(-2)) + " AM";
-// }
-
 //display live clock
-// while(true){
 setInterval(displayclock, 500);
-// }
-
-
 
 function displayclock() {
     var time = new Date();
@@ -48,7 +34,19 @@ function displayclock() {
         sec = '0' + sec;
     }
     document.getElementById("datetime").innerHTML = (("0" + (d.getMonth()+1)).slice(-2)) + "/" + (("0" + d.getDate()).slice(-2)) + "/" + (d.getFullYear()) + " " + hrs + ':' + min + ':' + sec + amorPm;
-    document.getElementById("oppositedatetime").innerHTML = hrs + ':' + min + ':' + (("0"+(60 - time.getSeconds())).slice(-2)) + amorPm;
+}
+
+//static dates and days
+var date = ["08/05", "08/06", "08/07", "08/08", "08/09", "08/10", currentDay];
+var day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+var dayDict = {
+    0 : "Sunday",
+    1 : "Monday",
+    2 : "Tuesday",
+    3 : "Wednesday",
+    4 : "Thursday",
+    5 : "Friday",
+    6 : "Saturday"
 }
 
 //label on the x-axis and creating the chart
@@ -57,7 +55,7 @@ dayArr.length = 7;
 for (var i = 0; i < dayArr.length; i++) {
     //create a new date object subtracting the days using get time from current day * 24hr * 60min * 60sec * 1000miliseconds
     var prevDays = new Date(d.getTime() - (i * 24 * 60 * 60 * 1000))
-    dayArr[i] = (("0" + (prevDays.getMonth()+1)).slice(-2)) + "/" + (("0" + (prevDays.getDate())).slice(-2));
+    dayArr[i] = "("+ dayDict[prevDays.getDay()] + ") " + (("0" + (prevDays.getMonth()+1)).slice(-2)) + "/" + (("0" + (prevDays.getDate())).slice(-2));
 }
 
 
@@ -69,8 +67,7 @@ for (var i = 0; i < minArr.length; i++) {
     minArr[i] = (("0" + (prevMins.getHours())).slice(-2)) + ":" + (("0" + (prevMins.getMinutes())).slice(-2));
 }
 
-var date = ["08/05", "08/06", "08/07", "08/08", "08/09", "08/10", currentDay];
-var day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
 //for the y-axis
 
 var nullArr = [0, 0, 0, 0, 0, 0, 0]
@@ -81,7 +78,7 @@ var ctx = document.getElementById("apiCallsChart");
 var apiCallsChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: minArr.reverse(),
+        labels: dayArr.reverse(),
         datasets: [
             {
                 data: newArr,
@@ -95,6 +92,16 @@ var apiCallsChart = new Chart(ctx, {
                 fill: false
             }
         ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        legend: {
+            display: true,
+            labels: {
+                fontColor: 'rgb(1, 1, 1)'
+            }
+        }
     }
 })
 
@@ -139,7 +146,7 @@ function testFunction() {
     
     apiCallsChart.data.datasets[0].data[6]++;
     document.getElementById("test").style.color = "red";
-    document.getElementById("test").innerHTML = "This text has been changed";
+    document.getElementById("test").innerHTML = "This text has been changed: " + dayArr;
     apiCallsChart.update();
 }
 

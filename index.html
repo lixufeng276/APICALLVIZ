@@ -18,35 +18,34 @@
         <div class="row justify-content-center">
             <p>Date/Time: <span id="datetime"></span></p>
         </div>
+
+        <div class="row justify-content-center">
+            <div class = "myChartDiv col-12">
+                <canvas id="apiCallsChart" width="800" height="400">Your browser does not support the HTML5 canvas tag.</canvas>
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-primary" onclick="testFunction()">Click Me</button>
+                    </div>
+                    
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary" onclick="resetFunction()">Reset</button>
+                    </div>
         
-        <div class="row justify-content-center">
-            <p>Date/Time opposite: <span id="oppositedatetime"></span></p>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-info" onclick="switchGraph()">Switch</button>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+            <div class="col-6">
+                <span id="test">Testing Javascript this text will change</span>
+            </div>
+        </div>
+            </div>
         </div>
 
-        <div class="row justify-content-center">
         
-            <div class = "myChartDiv">
-                <canvas id="apiCallsChart" width="600" height="400">Your browser does not support the HTML5 canvas tag.</canvas>
-            </div>
-        </div>
 
-        <div class="row justify-content-center">
-            <div class="col-2">
-                <button type="button" class="btn btn-primary" onclick="testFunction()">Click Me</button>
-            </div>
-            
-            <div class="col-2">
-                <button type="button" class="btn btn-secondary" onclick="resetFunction()">Reset The Graph!</button>
-            </div>
-
-            <div class="col-2">
-                <button type="button" class="btn btn-info" onclick="switchGraph()">Switch Graphs</button>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <span id="test">Testing Javascript this text will change</span>
-        </div>
+        
     </div>
 </body>
 </html>

@@ -22,33 +22,41 @@
             <p>Date/Time opposite: <span id="oppositedatetime"></span></p>
         </div>
 
-        <div class="row justify-content-start">
-            <div class="displayingText col-3">
-                <span id="test">Testing Javascript this text will change</span><br>
-                <span id="dataset">Dataset: </span>
-            </div>
-            <div class="col-3">
-                <ul>
-                    <li>The labels are in reverse order of array because added elements in it one at a time via for loop</li>
-                    <li>Click Me - Adds ONE (integer) to the current data set of the chart which is the last element in the array</li>
-                    <li>Reset Function - switches the dataset thus only changing it cosmetically</li>
-                </ul>
-            </div>
-            <div class="myChartDiv col-6">
-                <canvas id="apiCallsChart" width="600" height="400">Your browser does not support the HTML5 canvas tag.</canvas>
-            </div>
-        </div>
-
-        <div class="row justify-content-start">
-            <div class="col-1 offset-7">
-                <button type="button" class="btn btn-primary" onclick="testFunction()">Click Me</button>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                
+                <div class="displayingText">
+                    <span id="test">Testing Javascript this text will change</span><br>
+                    <span id="dataset">Dataset: </span>
+                </div>
+                <div row="row justify-content-center">
+                    <div class="col-8 offset-2">
+                        <ul>
+                            <li>The labels are in reverse order of array because added elements in it one at a time via for loop</li>
+                            <li>Click Me - Adds ONE (integer) to the current data set of the chart which is the last element in the array</li>
+                            <li>Reset Function - switches the dataset thus only changing it cosmetically</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             
-            <div class="col-1">
-                <button type="button" class="btn btn-secondary" onclick="resetFunction()">Reset The Graph!</button>
+            <div class="myChartDiv col-6">
+                <canvas id="apiCallsChart" width="600" height="400">Your browser does not support the HTML5 canvas tag.</canvas>
+                <div class="row justify-content-around">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-primary" onclick="testFunction()">Click Me</button>
+                    </div>
+                    
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary" onclick="resetFunction()">Reset The Graph!</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
+        
+        
 
             
     </div>
